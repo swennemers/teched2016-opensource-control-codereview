@@ -1,0 +1,40 @@
+.sapAseUI5CtrlMapZoom {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sapAseUI5CtrlMapMarker > .sapUiIcon {
+	font-size: 2rem;
+	color: @sapUiBtnText;
+}
+
+.sapAseUI5CtrlMapMarker:hover > .sapUiIcon {
+	color: lighten(@sapUiBtnText, 10%);
+}
+
+.sapAseUI5CtrlMapMarker:hover > img {
+	opacity: 0.8;
+}
+
+.sapAseUI5CtrlMapMap {
+	border: 2px solid @sapUiBtnBorderDefault;
+	background-color: @sapUiButtonStandardBG;
+}
+
+.ol-control .ol-has-tooltip {
+	border: 1px solid @sapUiBtnBorderDefault;
+	background-color: @sapUiButtonStandardBG;
+	border-radius: 0.125rem;
+	color: @sapUiBtnText;
+	text-shadow: 0 1px 0 @sapUiLightShadowTint;
+	font-family: @sapUiFontFamily;
+}
+
+.ol-control .ol-has-tooltip:hover {
+	background-color: @sapUiBtnBGStandardHover;
+}
+
+.ol-control button.ol-has-tooltip:focus {
+	background-color: @sapUiBtnBGStandardDown;
+	border-color: @sapUiBtnBGStandardDown;
+	color: @sapUiBtnTextActive;
+}

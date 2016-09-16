@@ -1,0 +1,31 @@
+{
+  "name": "ase.ui5.controls",
+  "version": "0.0.0",
+  "authors": [
+    "Sebastian Wennemers <sebastian.wennemers@sap.com>"
+  ],
+  "description": "Exercise Project TechEd",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "openui5",
+    "agile software engineering"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#~1.40.2",
+    "openui5-sap.m": "openui5/packaged-sap.m#~1.40.2",
+    "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#~1.40.2"
+  },
+  "resolutions": {
+    "openui5-sap.ui.core": "1.40.4"
+  }
+}

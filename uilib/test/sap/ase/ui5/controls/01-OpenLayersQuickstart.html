@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="http://openlayers.org/en/v3.17.1/css/ol.css" type="text/css">
+		<style>
+			.map {
+				height: 800px;
+				width: 100%;
+			}
+		</style>
+		<!-- Load OpenLayers library-->
+		<script src="http://localhost:8080/resources/sap/ase/ui5/controls/lib/ol.js" type="text/javascript"></script>
+
+		<title>Step 1 - OpenLayers 3 example</title>
+	</head>
+	<body>
+		<h2>Step 1 - OpenLayers 3 example</h2>
+		<div>Based on OpenLayers <a href="http://openlayers.org/en/v3.17.1/doc/quickstart.html">Quick Start</a></div>
+
+		<!-- DOM element as Map container (target for Map object)-->
+		<div id="map" class="map"></div>
+
+		<script type="text/javascript">
+			// create the Map object
+			var map = new ol.Map({
+				// direct it to the DOM element where it should be rendered
+				target: 'map',
+				// the map can have multiple layer => we just want to have a single map layer
+				layers: [
+					// which map tiles to use for our map layer => Use OpenStreetMap (OSM)
+					new ol.layer.Tile({
+						source: new ol.source.OSM()
+					})
+				],
+				// The view allows to specify the center, resolution, and rotation of the map.
+				// The simplest way to define a view is to define a center point and a zoom level.
+				view: new ol.View({
+					//You will notice that the center specified is in lon/lat coordinates (EPSG:4326).
+					//Since the only layer we use is in Spherical Mercator projection (EPSG:3857),
+					//we can reproject them on the fly to be able to zoom the map on the right coordinates.
+					//center: ol.proj.fromLonLat([8.6424, 49.2927]), //SAP Headquarters
+					center: ol.proj.fromLonLat([-115.1695, 36.1222]), //SAP Tech Ed Las Vegas
+					//center: ol.proj.fromLonLat([77.4745, 13.0616]), //SAP Tech Ed Bangalore
+					//center: ol.proj.fromLonLat([2.13603, 41.3544368]), //SAP Tech Ed Barcelona
+
+					// 0=zoomed out, higher=closer to the object
+					zoom: 16
+				})
+			});
+		</script>
+	</body>
+</html>

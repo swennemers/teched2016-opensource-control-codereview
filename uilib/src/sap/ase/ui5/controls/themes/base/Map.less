@@ -1,0 +1,52 @@
+@import "ol.less";
+
+.sapAseUI5CtrlMap {
+	display: inline-block;
+	position: relative;
+}
+
+.sapAseUI5CtrlMapMap {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	border: 2px solid @sapUiBaseBorder;
+	outline: medium none;
+}
+
+.sapAseUI5CtrlMapMap:focus {
+	border: 2px dotted @sapUiHighlight;
+}
+
+.sapAseUI5CtrlMapMarker:focus {
+	outline: 2px dotted @sapUiHighlight;
+}
+
+.sapAseUI5CtrlMapZoom {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50%;
+	max-width: 20rem;
+	background-color: white;
+}
+
+.sapAseUI5CtrlMapMarker {
+	position: relative;
+	margin-left: -50%;
+	margin-top: -50%;
+	display: inline-block;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.sapAseUI5CtrlMapMarker > .sapUiIcon {
+	font-size: 2rem;
+}
+
+.sapAseUI5CtrlMapMarker > img {
+	max-width: 3rem;
+}
