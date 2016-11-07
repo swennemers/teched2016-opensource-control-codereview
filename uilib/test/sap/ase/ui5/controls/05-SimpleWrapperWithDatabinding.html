@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>SimpleMap with Databinding</title>
+
+<script id="sap-ui-bootstrap"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.ase.ui5.controls,sap.m"
+	data-sap-ui-theme="sap_bluecrystal">
+
+</script>
+
+<script>
+	// data model with points to display
+	var oModel = new sap.ui.model.json.JSONModel({
+		zoom: 1
+	});
+	sap.ui.getCore().setModel(oModel);
+
+	var oMap = new sap.ase.ui5.controls.SimpleMap({
+		width: "640px",
+		height: "324px",
+		//zoom is now a property,
+		//that we bind the JSONModel's zoom property
+		zoom: "{/zoom}",
+	});
+
+	var oApp = new sap.m.App({
+		pages: new sap.m.Page({
+			title: "UX724 How to Integrate Open Source JavaScript Libraries",
+			content: [
+				oMap,
+				// bind a Slider to the "zoom" value in the JSONModel
+				new sap.m.Slider({
+					min:0,
+					max:16,
+					value:"{/zoom}"
+				}),
+				// to support my talk
+				new sap.m.Button({
+						text : "Next",
+						press : function(){
+							window.location.href = "./FullMap.html";
+						}
+				})
+			]
+		})
+	});
+	oApp.placeAt('content');
+</script>
+
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

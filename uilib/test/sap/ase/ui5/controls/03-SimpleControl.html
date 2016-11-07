@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Simple Control</title>
+
+<script id="sap-ui-bootstrap"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.m"
+	data-sap-ui-theme="sap_bluecrystal">
+
+</script>
+
+<script>
+
+
+	// call it "my.Square" and inherit from sap.ui.core.Control
+	sap.ui.core.Control.extend("my.Square", {
+
+		// the control API
+		metadata: {
+			properties: {
+				size: {type: "sap.ui.core.CSSSize", defaultValue: "100px"},
+				color: {type: "sap.ui.core.CSSColor", defaultValue: "black"}
+			}
+		},
+
+		// the part creating the HTML
+		// static function, so use the given "oControl" instance
+		// instead of "this" in the renderer function
+		renderer: function(oRm, oControl) {
+			oRm.write("<div");
+			oRm.writeControlData(oControl);
+
+			oRm.addClass("mySquare");
+			oRm.writeClasses();
+
+			oRm.addStyle("width", oControl.getSize());
+			oRm.addStyle("height", oControl.getSize());
+			oRm.addStyle("background-color", oControl.getColor());
+			oRm.writeStyles();
+
+			oRm.write(">");
+
+			oRm.write("</div>");
+		}
+
+	});
+
+	new sap.m.Title({
+		text:"UX724 How to Integrate Open Source JavaScript Libraries"
+	}).placeAt("content");
+
+
+
+	// use the control ---------------
+	var oSquare = new my.Square({color:"red"});
+
+	oSquare.placeAt("content");
+
+
+
+
+	// to support my talk
+	new sap.m.Button({
+			text : "Next",
+			press : function(){
+				window.location.href = "./04-QuickstartWrapper.html";
+			}
+	}).placeAt("content");
+</script>
+
+
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

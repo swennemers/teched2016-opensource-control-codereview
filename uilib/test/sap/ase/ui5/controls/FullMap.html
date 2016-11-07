@@ -4,23 +4,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Step 4 - Full Map - sap.ase.ui5.controls</title>
+<title>Full Map - sap.ase.ui5.controls</title>
 
 <script id="sap-ui-bootstrap"
 	src="../../../../../resources/sap-ui-core.js"
-	data-sap-ui-libs="sap.m, sap.ase.ui5.controls"
+	data-sap-ui-libs="sap.m,sap.ase.ui5.controls"
 	data-sap-ui-theme="sap_bluecrystal">
 
 </script>
 
 <script>
-	var oMap = new sap.ase.ui5.controls.Map({
+	// data model with points to display
+	var oModel = new sap.ui.model.json.JSONModel({
 		zoom: 3,
+		lat: 41.3544368,
+		long: 2.13603
+	});
+	sap.ui.getCore().setModel(oModel);
+
+	var oMap = new sap.ase.ui5.controls.Map({
+		zoom: "{/zoom}",
 		width: "100%",
 		height: "100%",
 		center: new sap.ase.ui5.controls.MapPOI({
-			"lat": 49.2927,
-			"long": 8.6424,
+			"lat": "{/lat}",
+			"long": "{/long}"
 		}),
 		markers : [
 			new sap.ase.ui5.controls.MapPOI({
@@ -49,7 +57,40 @@
 			})
 		]
 	});
-	oMap.placeAt('content');
+
+
+	var oApp = new sap.m.App({
+		pages: new sap.m.Page({
+			title: "UX724 How to Integrate Open Source JavaScript Libraries",
+			headerContent :  new sap.m.Button({
+					text : "Next",
+					press : function(){
+						window.location.href = "./03-SimpleControl.html";
+					}
+			}),
+			content: new sap.m.VBox({
+				items: [
+					new sap.m.ObjectHeader({
+						title : "Zoom Level",
+						number : "{/zoom}",
+						attributes : [
+							new sap.m.ObjectAttribute({
+								title : "Latitude:",
+								text : "{/lat}"
+							}),
+							new sap.m.ObjectAttribute({
+								title : "Longitude:",
+								text : "{/long}"
+							})
+						]
+					}),
+					oMap
+				]
+			})
+		})
+	});
+
+	oApp.placeAt('content');
 </script>
 
 </head>

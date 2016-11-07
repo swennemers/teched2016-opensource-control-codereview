@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Quickstart example as Control</title>
+<link rel="stylesheet" href="http://localhost:8080/resources/sap/ase/ui5/controls/lib/ol.css" type="text/css">
+<script id="sap-ui-bootstrap"
+	src="../../../../../resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.m"
+	data-sap-ui-theme="sap_bluecrystal">
+
+</script>
+
+<script>
+
+//get openlayers loaded
+jQuery.sap.require("sap.ase.ui5.controls.lib.ol");
+
+
+sap.ui.core.Control.extend('SimpleMap', {
+
+		metadata: {
+			properties: {
+				width : {type: "sap.ui.core.CSSSize", defaultValue: "500px"},
+				height : {type: "sap.ui.core.CSSSize", defaultValue: "500px"}
+			},
+
+			aggregations: {
+				"_map": {type: "sap.ui.core.HTML", visibility: "hidden", multiple: false},
+			}
+		},
+
+		init : function(){
+			this.setAggregation(
+				"_map",
+				new sap.ui.core.HTML({
+					id : this.getId() + "-map" ,
+					content : "<div class='sapAseUI5CtrlMapMap' tabindex='0'></div>"
+				})
+			);
+		},
+
+		renderer: function(oRm, oCtrl) {
+			oRm.write("<div");
+			oRm.writeControlData(oCtrl);
+			oRm.addClass("sapAseUI5CtrlMap");
+			oRm.writeClasses();
+			oRm.addStyle("width", oCtrl.getWidth());
+			oRm.addStyle("height", oCtrl.getHeight());
+			oRm.writeStyles();
+			oRm.write(">");
+
+			oRm.renderControl(oCtrl.getAggregation("_map"));
+
+			oRm.write("</div>");
+		},
+
+		onAfterRendering : function() {
+			if (!this._map) {
+				this._map = new ol.Map({
+					target: this.getId() + "-map",
+					layers: [
+						new ol.layer.Tile({
+							source: new ol.source.OSM()
+						})
+					],
+					view: new ol.View({
+						center: ol.proj.fromLonLat([2.13603, 41.3544368]), //SAP Tech Ed Barcelona,
+						zoom: 16
+					})
+				});
+
+			}
+		}
+	});
+
+
+	// use the control ---------------
+	var oMap = new SimpleMap({
+		width: "640px",
+		height: "324px"
+	});
+
+	var oApp = new sap.m.App({
+		pages: new sap.m.Page({
+			title: "UX724 How to Integrate Open Source JavaScript Libraries",
+			content: [
+				oMap,
+				// to support my talk
+				new sap.m.Button({
+						text : "Next",
+						press : function(){
+							window.location.href = "./05-SimpleWrapperWithDatabinding.html";
+						}
+				})
+			]
+		})
+	});
+
+	oApp.placeAt('content');
+</script>
+
+
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

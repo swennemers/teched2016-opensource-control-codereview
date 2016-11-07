@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 			options: {
 				port: "<%= grunt.option('port') %>",
 				hostname: '*',
-				open: 'http://localhost:<%= connect.options.port %>/test-resources/sap/ase/ui5/controls/index.html'
+				open: 'http://localhost:<%= connect.options.port %>/test-resources/sap/ase/ui5/controls/01-OpenLayersQuickstart.html'
 			},
 			src: {
 			},

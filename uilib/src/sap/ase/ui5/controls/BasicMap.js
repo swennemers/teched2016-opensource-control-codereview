@@ -30,7 +30,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			properties: {
 				width : {type: "sap.ui.core.CSSSize", defaultValue: "500px"},
 				height : {type: "sap.ui.core.CSSSize", defaultValue: "500px"},
-				zoom : {type: "int", defaultValue: 16}
+				zoom : {type: "int", defaultValue: 18}
 			},
 
 			aggregations: {

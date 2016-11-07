@@ -29,7 +29,8 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 		metadata: {
 			properties: {
 				width : {type: "sap.ui.core.CSSSize", defaultValue: "500px"},
-				height : {type: "sap.ui.core.CSSSize", defaultValue: "500px"}
+				height : {type: "sap.ui.core.CSSSize", defaultValue: "500px"},
+				zoom : {type: "int", defaultValue: 18}
 			},
 
 			aggregations: {
@@ -44,6 +45,14 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 					content : "<div class='sapAseUI5CtrlMapMap' tabindex='0'></div>"
 				})
 			);
+		},
+
+		setZoom : function(iZoom){
+			this.setProperty("zoom", iZoom, true);
+			if (this._map) {
+				this._map.getView().setZoom(iZoom);
+			}
+			return this;
 		},
 
 		renderer: function(oRm, oCtrl) {
@@ -71,8 +80,8 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 						})
 					],
 					view: new ol.View({
-						center: ol.proj.fromLonLat([8.6424, 49.2927]),
-						zoom: 16
+						center: ol.proj.fromLonLat([2.13603, 41.3544368]),
+						zoom: this.getZoom()
 					})
 				});
 
